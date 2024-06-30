@@ -1,0 +1,83 @@
+<div class="  grid lg:grid-cols-2  sm:grid-cols-1 gap-5 grid-cols-1 ">
+                    <label for="fname" class="text-green-900 font-karia  w-half  ">First name*</label>
+                    <label for="lname" class="text-green-900 w-half ">Last name *</label>
+                    <input type="text" id="fname" name="fname" errorMessage="This field is required"
+                        class="border border-green-900 rounded-lg w-half py-1 px-2 w-[320px] h-[51px]">
+                        <p class="text-red-500 text-xs italic" id="fname_error" style="display:none;">This field is required</p>
+                    <input type="text" id="lname" name="lname" errorMessage="This field is required"
+                        class="border border-green-800 rounded-lg w-half py-1 px-2 w-[320px] h-[51px] leading-8">
+                        <p class="text-red-500 text-xs italic" id="fname_error" style="display:none;">This field is required</p>
+                </div> <br>
+
+
+
+                <script>
+  const form = document.getElementById('myForm');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const firstName = document.getElementById('fname').value.trim();
+    const lastName = document.getElementById('lname').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const queryType = document.getElementById('querytype').value;
+    const message = document.getElementById('message').value.trim();
+    const consent = document.getElementById('consent').checked;
+
+    let isValid = true;
+
+    if (firstName === '') {
+      isValid = false;
+      document.getElementById('first-name-error').style.display = 'block';
+    } else {
+      document.getElementById('first-name-error').style.display = 'none';
+    }
+
+    if (lastName === '') {
+      isValid = false;
+      document.getElementById('last-name-error').style.display = 'block';
+    } else {
+      document.getElementById('last-name-error').style.display = 'none';
+    }
+
+    if (email === '' || !validateEmail(email)) {
+      isValid = false;
+      document.getElementById('email-error').style.display = 'block';
+    } else {
+      document.getElementById('email-error').style.display = 'none';
+    }
+
+    if (queryType === '') {
+      isValid = false;
+      document.getElementById('query-type-error').style.display = 'block';
+    } else {
+      document.getElementById('query-type-error').style.display = 'none';
+    }
+
+    if (message === '') {
+      isValid = false;
+      document.getElementById('message-error').style.display = 'block';
+    } else {
+      document.getElementById('message-error').style.display = 'none';
+    }
+
+    if (!consent) {
+      isValid = false;
+      document.getElementById('consent-error').style.display = 'block';
+    } else {
+      document.getElementById('consent-error').style.display = 'none';
+    }
+
+    if (isValid) {
+ 
+      form.submit();
+      afterSubmit();
+    }
+  });
+
+
+  function afterSubmit() {
+    console.log('Thanks for completing the form. We’ll be in touch soon!');
+  }
+</script>
+</html>
